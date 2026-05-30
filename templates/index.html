@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Tarefas</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f4f4; color: #333; }
+        .container { max-width: 900px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1, h2 { color: #0056b3; }
+        form { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; background-color: #e9ecef; }
+        form input[type="text"], form textarea, form select { width: calc(100% - 22px); padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        form button { background-color: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        form button:hover { background-color: #0056b3; }
+        .task-list { display: flex; justify-content: space-around; flex-wrap: wrap; }
+        .task-column { background-color: #f8f9fa; border: 1px solid #dee2e6; border-radius: 5px; padding: 15px; margin: 10px; flex: 1; min-width: 280px; }
+        .task-column h3 { text-align: center; color: #007bff; margin-bottom: 15px; }
+        .task-item { background-color: #fff; border: 1px solid #ced4da; border-radius: 5px; padding: 10px; margin-bottom: 10px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+        .task-item h4 { margin-top: 0; color: #333; }
+        .task-item p { font-size: 0.9em; color: #666; }
+        .task-item .actions { text-align: right; margin-top: 10px; }
+        .task-item .actions a, .task-item .actions button { background-color: #dc3545; color: white; padding: 5px 10px; border: none; border-radius: 3px; cursor: pointer; text-decoration: none; font-size: 0.8em; margin-left: 5px; }
+        .task-item .actions a.edit { background-color: #ffc107; }
+        .task-item .actions a.edit:hover { background-color: #e0a800; }
+        .task-item .actions button:hover { background-color: #c82333; }
+        .status-select { width: auto; margin-left: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gerenciador de Tarefas Ágeis</h1>
+
+        <h2>Adicionar Nova Tarefa</h2>
+        <form action="/add" method="POST">
+            <input type="text" name="title" placeholder="Título da Tarefa" required>
+            <textarea name="description" placeholder="Descrição da Tarefa"></textarea>
+            <button type="submit">Adicionar Tarefa</button>
+        </form>
+
+        <h2>Quadro Kanban</h2>
+        <div class="task-list">
+            <div class="task-column">
+                <h3>A Fazer</h3>
+                {% for task in tasks %}
+                    {% if task.status == 'A Fazer' %}
+                        <div class="task-item">
+                            <h4>{{ task.title }}</h4>
+                            <p>{{ task.description }}</p>
+                            <div class="actions">
+                                <form action="/update/{{ task.id }}" method="POST" style="display:inline;">
+                                    <input type="hidden" name="title" value="{{ task.title }}">
+                                    <input type="hidden" name="description" value="{{ task.description }}">
+                                    <select name="status" onchange="this.form.submit()" class="status-select">
+                                        <option value="A Fazer" selected>A Fazer</option>
+                                        <option value="Em Progresso">Em Progresso</option>
+                                        <option value="Concluído">Concluído</option>
+                                    </select>
+                                </form>
+                                <a href="/delete/{{ task.id }}" onclick="return confirm('Tem certeza que deseja excluir esta tarefa?');">Excluir</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="task-column">
+                <h3>Em Progresso</h3>
+                {% for task in tasks %}
+                    {% if task.status == 'Em Progresso' %}
+                        <div class="task-item">
+                            <h4>{{ task.title }}</h4>
+                            <p>{{ task.description }}</p>
+                            <div class="actions">
+                                <form action="/update/{{ task.id }}" method="POST" style="display:inline;">
+                                    <input type="hidden" name="title" value="{{ task.title }}">
+                                    <input type="hidden" name="description" value="{{ task.description }}">
+                                    <select name="status" onchange="this.form.submit()" class="status-select">
+                                        <option value="A Fazer">A Fazer</option>
+                                        <option value="Em Progresso" selected>Em Progresso</option>
+                                        <option value="Concluído">Concluído</option>
+                                    </select>
+                                </form>
+                                <a href="/delete/{{ task.id }}" onclick="return confirm('Tem certeza que deseja excluir esta tarefa?');">Excluir</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <div class="task-column">
+                <h3>Concluído</h3>
+                {% for task in tasks %}
+                    {% if task.status == 'Concluído' %}
+                        <div class="task-item">
+                            <h4>{{ task.title }}</h4>
+                            <p>{{ task.description }}</p>
+                            <div class="actions">
+                                <form action="/update/{{ task.id }}" method="POST" style="display:inline;">
+                                    <input type="hidden" name="title" value="{{ task.title }}">
+                                    <input type="hidden" name="description" value="{{ task.description }}">
+                                    <select name="status" onchange="this.form.submit()" class="status-select">
+                                        <option value="A Fazer">A Fazer</option>
+                                        <option value="Em Progresso">Em Progresso</option>
+                                        <option value="Concluído" selected>Concluído</option>
+                                    </select>
+                                </form>
+                                <a href="/delete/{{ task.id }}" onclick="return confirm('Tem certeza que deseja excluir esta tarefa?');">Excluir</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
