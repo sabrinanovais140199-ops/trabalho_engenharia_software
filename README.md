@@ -90,3 +90,4 @@ Para acomodar essa mudança, um novo card foi adicionado ao quadro Kanban na col
 *   Configuração do pipeline de CI com GitHub Actions
 *   Criação do README.md inicial
 * Desenvolvido por: Sabrina Novais.
+* Projeto pronto para avaliação final.
