@@ -54,3 +54,4 @@ def test_delete_task(client):
     with app.app_context():
         task = Task.query.get(task_id)
         assert task is None
+ # Fim da suíte de testes unitários
