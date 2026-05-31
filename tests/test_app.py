@@ -1,7 +1,12 @@
 # Testes automatizados com Pytest
+# Testes automatizados com Pytest
 import pytest
-from app import app, db, Task
+import sys
+import os
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+from app import app, db, Task
 @pytest.fixture
 def client():
     app.config["TESTING"] = True
