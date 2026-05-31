@@ -60,6 +60,7 @@ Um pipeline de CI/CD foi configurado usando GitHub Actions para garantir a quali
 O histórico de commits será mantido de forma semântica e descritiva, registrando as atividades e alterações realizadas ao longo do desenvolvimento.
 
 ## 8. Gestão de Mudanças: Simulação de Alteração de Escopo
+* Status: Funcionalidade de filtro por status planejada e documentada.
 
 **Justificativa da Mudança:**
 
