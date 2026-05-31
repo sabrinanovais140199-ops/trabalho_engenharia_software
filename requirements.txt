@@ -1,2 +1,3 @@
 Flask
 Flask-SQLAlchemy
+# Bibliotecas do projeto
