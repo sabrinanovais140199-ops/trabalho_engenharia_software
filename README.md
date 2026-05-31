@@ -91,3 +91,4 @@ Para acomodar essa mudança, um novo card foi adicionado ao quadro Kanban na col
 *   Criação do README.md inicial
 * Desenvolvido por: Sabrina Novais.
 * Projeto pronto para avaliação final.
+* Entrega realizada em: Maio de 2026.
