@@ -73,7 +73,7 @@ Para acomodar essa mudança, um novo card foi adicionado ao quadro Kanban na col
 
 ### A Fazer
 
-*   Implementar filtro de tarefas por status
+*   Implementar filtro de tarefas por status.
 *   Adicionar autenticação de usuário.
 
 ### Em Progresso
@@ -88,3 +88,4 @@ Para acomodar essa mudança, um novo card foi adicionado ao quadro Kanban na col
 *   Configuração de testes unitários com Pytest
 *   Configuração do pipeline de CI com GitHub Actions
 *   Criação do README.md inicial
+* Desenvolvido por: Sabrina Novais.
