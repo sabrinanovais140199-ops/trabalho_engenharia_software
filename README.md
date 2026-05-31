@@ -74,7 +74,7 @@ Para acomodar essa mudança, um novo card foi adicionado ao quadro Kanban na col
 ### A Fazer
 
 *   Implementar filtro de tarefas por status
-*   Adicionar autenticação de usuário
+*   Adicionar autenticação de usuário.
 
 ### Em Progresso
 
